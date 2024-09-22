@@ -1,0 +1,3 @@
+Camera1:rtsp://login:pass@ip:port
+Camera2:rtsp://login:pass@ip:port
+

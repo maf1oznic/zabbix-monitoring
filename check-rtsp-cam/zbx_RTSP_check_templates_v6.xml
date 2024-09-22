@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<zabbix_export>
+    <version>6.0</version>
+    <templates>
+        <template>
+            <uuid>6d7dcd790d1a4f0b90f2bf80e16b4d80</uuid>
+            <template>RTSP check</template>
+            <name>RTSP check</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>d8322ef6da4f439189db86f59a7c4f81</uuid>
+                    <name>RTSP Discovery</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>cameras_rtsp.discovery</key>
+                    <delay>60</delay>
+                    <lifetime>90d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>9b4366f0f1f84b33bf8651173b9d09f0</uuid>
+                            <name>{#CAMERA_ID} is down</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>cameras_rtsp.status[{#CAMERA_ID}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <tags>
+                                <tag>
+                                    <tag>Application2</tag>
+                                    <value>RTSP</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>fd27156b01044207ae20ea5cc2e48c6b</uuid>
+                                    <expression>last(/RTSP check/cameras_rtsp.status[{#CAMERA_ID}])=0</expression>
+                                    <name>{#CAMERA_ID} is down</name>
+                                    <priority>DISASTER</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
