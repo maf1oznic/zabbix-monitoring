@@ -19,5 +19,5 @@ zabbix_export:
           triggers:
             - uuid: ccecc0cb0a6541ea87e59c97ee141212
               expression: 'min(/Asterisk trunk/asterisk.trunk,3m)<>0'
-              name: 'Trunk rejected on {HOST.NAME}'
+              name: 'Trunk rejected more 3 min on {HOST.NAME}'
               priority: HIGH
