@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.4</version>
+    <template_groups>
+        <template_group>
+            <uuid>7df96b18c230490a9a0a9e2307226338</uuid>
+            <name>Templates</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>1047496494234966b3088fac9f190100</uuid>
+            <template>SSL Sert Expiration</template>
+            <name>SSL Sert Expiration</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>248a9d83890e4210a9f41e1aebe1de45</uuid>
+                    <name>SSL HTTPS Discovery</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>ssl_https.discovery</key>
+                    <delay>300</delay>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#DOMAIN_HTTPS}</macro>
+                                <value>.*</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>90d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>3ec84358297649aa96fb74505f105011</uuid>
+                            <name>Certificate {#DOMAIN_HTTPS} expire</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>ssl_https.expire[{#DOMAIN_HTTPS}]</key>
+                            <delay>300</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>SSL</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>bbe67ce182a74f3392440980f8c2f272</uuid>
+                                    <expression>last(/SSL Sert Expiration/ssl_https.expire[{#DOMAIN_HTTPS}])&lt;1</expression>
+                                    <name>Certificate {#DOMAIN_HTTPS} expire less then 1 day</name>
+                                    <priority>DISASTER</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>ssl-1day</tag>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>f5c91806d26a4d06a30fdf51a194615b</uuid>
+                                    <expression>last(/SSL Sert Expiration/ssl_https.expire[{#DOMAIN_HTTPS}])&lt;5 and last(/SSL Sert Expiration/ssl_https.expire[{#DOMAIN_HTTPS}])&gt;=1</expression>
+                                    <name>Certificate {#DOMAIN_HTTPS} expire less then 5 days</name>
+                                    <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>ssl-5day</tag>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>d82906d2623745b98ca4ad4c01e17c2e</uuid>
+                                    <expression>last(/SSL Sert Expiration/ssl_https.expire[{#DOMAIN_HTTPS}])&lt;10 and last(/SSL Sert Expiration/ssl_https.expire[{#DOMAIN_HTTPS}])&gt;=5</expression>
+                                    <name>Certificate {#DOMAIN_HTTPS} expire less then 10 days</name>
+                                    <priority>AVERAGE</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>ssl-all</tag>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>89d18c78cd4949919e1b7ec47662cede</uuid>
+                                    <expression>last(/SSL Sert Expiration/ssl_https.expire[{#DOMAIN_HTTPS}])&lt;15 and last(/SSL Sert Expiration/ssl_https.expire[{#DOMAIN_HTTPS}])&gt;=10</expression>
+                                    <name>Certificate {#DOMAIN_HTTPS} expire less then 15 days</name>
+                                    <priority>WARNING</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>ssl-all</tag>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>16742c32b74a4fe18fc176e58eb739d5</uuid>
+                                    <expression>last(/SSL Sert Expiration/ssl_https.expire[{#DOMAIN_HTTPS}])&lt;20 and last(/SSL Sert Expiration/ssl_https.expire[{#DOMAIN_HTTPS}])&gt;=15</expression>
+                                    <name>Certificate {#DOMAIN_HTTPS} expire less then 20 days</name>
+                                    <priority>INFO</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>ssl-all</tag>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>6ddab186e8734fc38fedab7b5eb6d9f6</uuid>
+                    <name>SSL SMTP Discovery</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>ssl_smtp.discovery</key>
+                    <delay>300</delay>
+                    <status>DISABLED</status>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#DOMAIN_SMTP}</macro>
+                                <value>.*</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>90d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>c26afb61e2d540c5a9d28f8f4901cb17</uuid>
+                            <name>Certificate {#DOMAIN_SMTP} expire</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>ssl_smtp.expire[{#DOMAIN_SMTP}]</key>
+                            <delay>300</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <tags>
+                                <tag>
+                                    <tag>Application</tag>
+                                    <value>SSL</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>b77f86235c1d49819d927bc9c46b752a</uuid>
+                                    <expression>last(/SSL Sert Expiration/ssl_smtp.expire[{#DOMAIN_SMTP}])&lt;30</expression>
+                                    <name>Certificate {#DOMAIN_SMTP} expire less then 30 days</name>
+                                    <priority>AVERAGE</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
