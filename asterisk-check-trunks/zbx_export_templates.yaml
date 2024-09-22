@@ -1,0 +1,23 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+    - uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+  templates:
+    - uuid: ddfc33dff6de4e82bc1071db25814f3a
+      template: 'Asterisk trunk'
+      name: 'Asterisk trunk'
+      groups:
+        - name: Templates
+      items:
+        - uuid: 2ec6d7a66b3f46ebaa00b1878830c362
+          name: 'Trunk status'
+          key: asterisk.trunk
+          delay: '30'
+          tags:
+            - tag: trunk
+          triggers:
+            - uuid: ccecc0cb0a6541ea87e59c97ee141212
+              expression: 'min(/Asterisk trunk/asterisk.trunk,3m)<>0'
+              name: 'Trunk rejected on {HOST.NAME}'
+              priority: HIGH
