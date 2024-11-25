@@ -19,15 +19,16 @@ def send_action(action):
     return tn.read_very_eager().decode('utf-8')
 
 
-# Проверяем, что переданы три аргумента
-if len(sys.argv) < 4:
-    print("Usage: aster_call.py <phone_number> <event_status> <event_name>")
+# Проверяем, что переданы четыре аргумента
+if len(sys.argv) < 5:
+    print("Usage: aster_call.py <phone_number> <event_status> <event_name> <host_name>")
     sys.exit(1)
 
 # Получаем данные из аргументов командной строки
 number = sys.argv[1]  # {ALERT.SENDTO}
 event_status = sys.argv[2]  # {EVENT.STATUS}
 event_name = sys.argv[3]  # {EVENT.NAME}
+host_name = sys.argv[4]    # {HOST.NAME}
 
 # Подключаемся к AMI
 tn = telnetlib.Telnet(AMI_HOST, AMI_PORT)
@@ -49,6 +50,7 @@ Timeout: 30000
 Async: true
 Variable: EVENT_STATUS={event_status}
 Variable: EVENT_NAME={event_name}
+Variable: HOST_NAME={host_name}
 """
 
 # Отправляем действие на Asterisk
