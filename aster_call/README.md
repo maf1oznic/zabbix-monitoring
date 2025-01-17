@@ -15,6 +15,14 @@ nano /usr/lib/zabbix/alertscripts/aster_call.py
 ```
 sudo nano /opt/asterisk/scripts/gtts_script.py
 ```
+```
+sudo apt install python3.12-venv
+python3 -m venv myenv
+source myenv/bin/activate
+pip install gtts
+sudo apt update
+sudo apt install sox libsox-fmt-mp3
+```
 
 Добавляем мой диалплан:
 ```
