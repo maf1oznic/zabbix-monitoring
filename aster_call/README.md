@@ -13,10 +13,14 @@ nano /usr/lib/zabbix/alertscripts/aster_call.py
 
 На сервере астериска создаем скрипт который преобразует текст от заббикса в аудио:
 ```
+mkdir -p /opt/asterisk/scripts/
+```
+```
 sudo nano /opt/asterisk/scripts/gtts_script.py
 ```
 ```
 sudo apt install python3.12-venv
+cd /opt/asterisk/scripts/
 python3 -m venv myenv
 source myenv/bin/activate
 pip install gtts
