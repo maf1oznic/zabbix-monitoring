@@ -41,7 +41,7 @@ tn.read_very_eager()
 
 # Формируем запрос на вызов
 action = f"""Action: Originate
-Channel: PJSIP/{number}@{trunk}
+Channel: Local/s@gtts
 Context: gtts-test
 Exten: s
 Priority: 1
@@ -51,6 +51,8 @@ Async: true
 Variable: EVENT_STATUS={event_status}
 Variable: EVENT_NAME={event_name}
 Variable: HOST_NAME={host_name}
+Variable: TARGET_NUMBER={number}
+Variable: TRUNK={trunk}
 """
 
 # Отправляем действие на Asterisk
