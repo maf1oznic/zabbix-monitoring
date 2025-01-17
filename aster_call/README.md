@@ -19,6 +19,9 @@ mkdir -p /opt/asterisk/scripts/
 sudo nano /opt/asterisk/scripts/gtts_script.py
 ```
 ```
+sudo chown asterisk:asterisk gtts_script.py
+```
+```
 sudo apt install python3.12-venv
 cd /opt/asterisk/scripts/
 python3 -m venv myenv
