@@ -19,13 +19,13 @@ mkdir -p /opt/asterisk/scripts/
 sudo nano /opt/asterisk/scripts/gtts_script.py
 ```
 ```
-sudo chown asterisk:asterisk gtts_script.py
+sudo chown asterisk:asterisk /opt/asterisk/scripts/gtts_script.py
 ```
 ```
 sudo apt install python3.12-venv
-cd /opt/asterisk/scripts/
-python3 -m venv myenv
-source myenv/bin/activate
+cd /opt/asterisk
+python3 -m venv venv
+source venv/bin/activate
 pip install gtts
 sudo apt update
 sudo apt install sox libsox-fmt-mp3
